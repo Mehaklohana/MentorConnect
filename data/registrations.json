@@ -1,0 +1,42 @@
+[
+  {
+    "id": "user_1789286463118_ly6wsl4bx",
+    "firstName": "Abc",
+    "lastName": "Xyz",
+    "email": "abc@gmail.com",
+    "role": "student",
+    "passwordHash": "hashed_cja0xk",
+    "createdAt": "2026-09-13T08:01:03.118Z",
+    "seen": true
+  },
+  {
+    "id": "reg-1789289001323-19ve1k",
+    "firstName": "Test",
+    "lastName": "Visitor",
+    "email": "test.visitor@example.com",
+    "role": "student",
+    "passwordHash": "",
+    "createdAt": "2026-09-13T08:43:21.323Z",
+    "seen": true
+  },
+  {
+    "id": "user_1789294760364_n94kvs7bj",
+    "firstName": "Aisha",
+    "lastName": "Rao",
+    "email": "mehak23@gmail.com",
+    "role": "student",
+    "passwordHash": "hashed_pkqfh6",
+    "createdAt": "2026-09-13T10:19:20.364Z",
+    "seen": true
+  },
+  {
+    "id": "user_1789669928242_f73x8vp71",
+    "firstName": "Mehak",
+    "lastName": "Kherajani",
+    "email": "mehak.kumari822@gmail.com",
+    "role": "student",
+    "passwordHash": "hashed_pkqfh6",
+    "createdAt": "2026-09-17T18:32:08.242Z",
+    "seen": false
+  }
+]

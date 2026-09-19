@@ -1,0 +1,2635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MentorConnect - Book, Meet, Learn</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- SPLASH SCREEN -->
+    <div id="splash-screen" class="screen active">
+        <div class="splash-container">
+            <div class="splash-logo">
+                <div class="logo-icon">
+                    <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                        <circle cx="30" cy="30" r="28" stroke="url(#grad1)" stroke-width="3"/>
+                        <path d="M20 35L28 27L35 34L42 24" stroke="url(#grad1)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="20" cy="35" r="3" fill="url(#grad1)"/>
+                        <circle cx="42" cy="24" r="3" fill="url(#grad1)"/>
+                        <defs>
+                            <linearGradient id="grad1" x1="0" y1="0" x2="60" y2="60">
+                                <stop offset="0%" stop-color="#4A90D9"/>
+                                <stop offset="100%" stop-color="#2E4172"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <h1 class="logo-text">MentorConnect</h1>
+                <p class="logo-tagline">Build Your Identity</p>
+            </div>
+            <div class="splash-loader">
+                <div class="loader-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- WELCOME SCREEN -->
+    <div id="welcome-screen" class="screen">
+        <div class="welcome-container">
+            <div class="welcome-content">
+                <div class="welcome-illustration">
+                    <svg width="280" height="200" viewBox="0 0 280 200" fill="none">
+                        <circle cx="140" cy="100" r="80" fill="rgba(74, 144, 217, 0.15)"/>
+                        <circle cx="110" cy="85" r="20" fill="#4A90D9"/>
+                        <circle cx="170" cy="85" r="20" fill="#2E4172"/>
+                        <path d="M90 130C90 130 110 150 140 150C170 150 190 130 190 130" stroke="#4A90D9" stroke-width="3" stroke-linecap="round"/>
+                        <circle cx="100" cy="80" r="5" fill="white"/>
+                        <circle cx="160" cy="80" r="5" fill="white"/>
+                        <path d="M125 95C125 95 132 102 140 102C148 102 155 95 155 95" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <h1 class="welcome-title">Welcome to MentorConnect</h1>
+                <p class="welcome-subtitle">Connect with mentors and students. Build your professional identity and grow together.</p>
+                <div class="welcome-actions">
+                    <button class="btn btn-primary btn-lg" onclick="navigateTo('signup-screen')">Get Started</button>
+                    <button class="btn btn-outline btn-lg" onclick="navigateTo('login-screen')">I Have an Account</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOGIN SCREEN -->
+    <div id="login-screen" class="screen">
+        <div class="auth-container">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <div class="auth-logo">
+                        <svg width="40" height="40" viewBox="0 0 60 60" fill="none">
+                            <circle cx="30" cy="30" r="28" stroke="url(#grad2)" stroke-width="3"/>
+                            <path d="M20 35L28 27L35 34L42 24" stroke="url(#grad2)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <defs>
+                                <linearGradient id="grad2" x1="0" y1="0" x2="60" y2="60">
+                                    <stop offset="0%" stop-color="#4A90D9"/>
+                                    <stop offset="100%" stop-color="#2E4172"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <h2>Welcome Back</h2>
+                    <p>Sign in to continue to MentorConnect</p>
+                </div>
+                <form id="login-form" autocomplete="on" onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label for="login-email">Email Address</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="2" y="4" width="20" height="16" rx="2"/>
+                                    <path d="M22 6L12 13L2 6"/>
+                                </svg>
+                            </span>
+                            <input type="email" id="login-email" name="username" autocomplete="username" list="recent-login-emails" placeholder="you@example.com" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="11" width="18" height="11" rx="2"/>
+                                    <path d="M7 11V7a5 5 0 0110 0v4"/>
+                                </svg>
+                            </span>
+                            <input type="password" id="login-password" name="password" autocomplete="current-password" placeholder="Enter your password" required>
+                            <button type="button" class="toggle-password" onclick="togglePassword('login-password')">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                    <circle cx="12" cy="12" r="3"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-options">
+                        <label class="checkbox-wrapper">
+                            <input type="checkbox" id="login-remember">
+                            <span class="checkmark"></span>
+                            Remember me
+                        </label>
+                        <a href="#" class="forgot-link" onclick="navigateTo('forgot-screen')">Forgot password?</a>
+                    </div>
+                    <datalist id="recent-login-emails"></datalist>
+                    <button type="submit" class="btn btn-primary btn-full">Sign In</button>
+                </form>
+                <div class="auth-footer">
+                    <p>Don't have an account? <a href="#" onclick="navigateTo('signup-screen')">Sign up</a></p>
+                </div>
+                <div class="admin-portal-link">
+                    <button type="button" class="btn btn-outline btn-full" onclick="navigateTo('admin-login-screen')">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            <path d="M9 12l2 2 4-4"/>
+                        </svg>
+                        Admin Portal
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADMIN LOGIN SCREEN -->
+    <div id="admin-login-screen" class="screen">
+        <div class="auth-container">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <div class="auth-logo">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="url(#grad2)" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            <path d="M9 12l2 2 4-4"/>
+                        </svg>
+                    </div>
+                    <h2>Admin Portal</h2>
+                    <p>Restricted access — administrators only</p>
+                </div>
+                <form id="admin-login-form" onsubmit="handleAdminLogin(event)">
+                    <div class="form-group">
+                        <label for="admin-email">Admin Email</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="2" y="4" width="20" height="16" rx="2"/>
+                                    <path d="M22 6L12 13L2 6"/>
+                                </svg>
+                            </span>
+                            <input type="email" id="admin-email" placeholder="Enter admin email" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="admin-password">Password</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="11" width="18" height="11" rx="2"/>
+                                    <path d="M7 11V7a5 5 0 0110 0v4"/>
+                                </svg>
+                            </span>
+                            <input type="password" id="admin-password" placeholder="Enter admin password" required>
+                            <button type="button" class="toggle-password" onclick="togglePassword('admin-password')">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                    <circle cx="12" cy="12" r="3"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-options">
+                        <label class="checkbox-wrapper">
+                            <input type="checkbox" id="admin-remember">
+                            <span class="checkmark"></span>
+                            Remember me
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Sign In to Admin Portal</button>
+                </form>
+                <div class="auth-footer">
+                    <p><a href="#" onclick="navigateTo('login-screen')">Back to user sign in</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SIGNUP SCREEN -->
+    <div id="signup-screen" class="screen">
+        <div class="auth-container">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <div class="auth-logo">
+                        <svg width="40" height="40" viewBox="0 0 60 60" fill="none">
+                            <circle cx="30" cy="30" r="28" stroke="url(#grad3)" stroke-width="3"/>
+                            <path d="M20 35L28 27L35 34L42 24" stroke="url(#grad3)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <defs>
+                                <linearGradient id="grad3" x1="0" y1="0" x2="60" y2="60">
+                                    <stop offset="0%" stop-color="#4A90D9"/>
+                                    <stop offset="100%" stop-color="#2E4172"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <h2>Create Account</h2>
+                    <p>Join MentorConnect and start your journey</p>
+                </div>
+                <form id="signup-form" autocomplete="on" onsubmit="handleSignup(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="signup-firstname">First Name</label>
+                            <div class="input-wrapper">
+                                <input type="text" id="signup-firstname" placeholder="John" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-lastname">Last Name</label>
+                            <div class="input-wrapper">
+                                <input type="text" id="signup-lastname" placeholder="Doe" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-email">Email Address</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="2" y="4" width="20" height="16" rx="2"/>
+                                    <path d="M22 6L12 13L2 6"/>
+                                </svg>
+                            </span>
+                            <input type="email" id="signup-email" name="username" autocomplete="username" list="recent-signup-emails" placeholder="you@example.com" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-password">Password</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="11" width="18" height="11" rx="2"/>
+                                    <path d="M7 11V7a5 5 0 0110 0v4"/>
+                                </svg>
+                            </span>
+                            <input type="password" id="signup-password" name="new-password" autocomplete="new-password" placeholder="Min 8 characters" required minlength="8" oninput="updatePasswordStrength()">
+                            <button type="button" class="toggle-password" onclick="togglePassword('signup-password')">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                    <circle cx="12" cy="12" r="3"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div id="password-strength" class="password-strength" style="display:none;">
+                            <div class="strength-bar">
+                                <div class="strength-fill" id="strength-fill"></div>
+                            </div>
+                            <span class="strength-text" id="strength-text"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-confirm">Confirm Password</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="11" width="18" height="11" rx="2"/>
+                                    <path d="M7 11V7a5 5 0 0110 0v4"/>
+                                </svg>
+                            </span>
+                            <input type="password" id="signup-confirm" name="confirm-password" autocomplete="new-password" placeholder="Confirm your password" required oninput="checkPasswordMatch()">
+                            <span id="password-match" class="password-match"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="checkbox-wrapper">
+                            <input type="checkbox" id="signup-remember">
+                            <span class="checkmark"></span>
+                            <span class="checkbox-label">Remember me on this device</span>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="checkbox-wrapper">
+                            <input type="checkbox" id="agree-terms" required>
+                            <span class="checkmark"></span>
+                            <span class="checkbox-label">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></span>
+                        </label>
+                    </div>
+                    <datalist id="recent-signup-emails"></datalist>
+                    <button type="submit" class="btn btn-primary btn-full">Create Account</button>
+                </form>
+                <div class="auth-footer">
+                    <p>Already have an account? <a href="#" onclick="navigateTo('login-screen')">Sign in</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FORGOT PASSWORD SCREEN -->
+    <div id="forgot-screen" class="screen">
+        <div class="auth-container">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <div class="auth-logo">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="url(#grad4)" stroke-width="2">
+                            <rect x="3" y="11" width="18" height="11" rx="2"/>
+                            <path d="M7 11V7a5 5 0 0110 0v4"/>
+                            <defs>
+                                <linearGradient id="grad4" x1="0" y1="0" x2="24" y2="24">
+                                    <stop offset="0%" stop-color="#4A90D9"/>
+                                    <stop offset="100%" stop-color="#2E4172"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <h2>Forgot Password?</h2>
+                    <p>Enter your email and we'll send you a reset link</p>
+                </div>
+                <form id="forgot-form" onsubmit="handleForgotPassword(event)">
+                    <div class="form-group">
+                        <label for="forgot-email">Email Address</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="2" y="4" width="20" height="16" rx="2"/>
+                                    <path d="M22 6L12 13L2 6"/>
+                                </svg>
+                            </span>
+                            <input type="email" id="forgot-email" placeholder="you@example.com" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Send Reset Link</button>
+                </form>
+                <p id="forgot-demo-code" class="demo-hint" hidden></p>
+                <div class="auth-footer">
+                    <p>Remember your password? <a href="#" onclick="navigateTo('login-screen')">Back to login</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EMAIL VERIFICATION SCREEN -->
+    <div id="verify-email-screen" class="screen">
+        <div class="auth-container">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <div class="auth-logo">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2">
+                            <rect x="2" y="4" width="20" height="16" rx="2"/>
+                            <path d="M22 6L12 13L2 6"/>
+                            <path d="M8 16l2 2 5-5"/>
+                        </svg>
+                    </div>
+                    <h2>Verify Your Email</h2>
+                    <p>Enter the six-digit code sent to your email address.</p>
+                </div>
+                <form id="verify-email-form" onsubmit="handleEmailVerification(event)">
+                    <div class="form-group">
+                        <label for="verification-code">Verification Code</label>
+                        <input type="text" id="verification-code" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" maxlength="6" placeholder="000000" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Verify Email</button>
+                </form>
+                <p id="verification-demo-code" class="demo-hint" hidden></p>
+                <div class="auth-footer">
+                    <p><a href="#" onclick="resendVerificationCode(event)">Resend code</a></p>
+                    <p><a href="#" onclick="navigateTo('login-screen')">Back to sign in</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- RESET PASSWORD SCREEN -->
+    <div id="reset-password-screen" class="screen">
+        <div class="auth-container">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <div class="auth-logo">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2">
+                            <rect x="3" y="11" width="18" height="11" rx="2"/>
+                            <path d="M7 11V7a5 5 0 0110 0v4"/>
+                        </svg>
+                    </div>
+                    <h2>Reset Password</h2>
+                    <p>Choose a new password for your account.</p>
+                </div>
+                <form id="reset-password-form" onsubmit="handlePasswordReset(event)">
+                    <div class="form-group">
+                        <label for="reset-code">Reset Code</label>
+                        <input type="text" id="reset-code" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" maxlength="6" placeholder="000000" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reset-password">New Password</label>
+                        <div class="input-wrapper">
+                            <input type="password" id="reset-password" autocomplete="new-password" placeholder="Create a strong password" required minlength="8" oninput="updateResetPasswordStrength()">
+                            <button type="button" class="toggle-password" onclick="togglePassword('reset-password')" aria-label="Show or hide password">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                            </button>
+                        </div>
+                        <div id="reset-password-strength" class="password-strength" hidden>
+                            <div class="strength-bar"><div class="strength-fill" id="reset-strength-fill"></div></div>
+                            <span class="strength-text" id="reset-strength-text"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="reset-confirm-password">Confirm New Password</label>
+                        <input type="password" id="reset-confirm-password" autocomplete="new-password" placeholder="Confirm your password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Set New Password</button>
+                </form>
+                <p id="reset-demo-code" class="demo-hint" hidden></p>
+                <div class="auth-footer">
+                    <p><a href="#" onclick="navigateTo('login-screen')">Back to sign in</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ROLE SELECTION SCREEN -->
+    <div id="role-screen" class="screen">
+        <div class="auth-container">
+            <div class="auth-card role-card">
+                <div class="auth-header">
+                    <h2>Choose Your Role</h2>
+                    <p>Select how you'll use MentorConnect</p>
+                </div>
+                <div class="role-options">
+                    <div class="role-option" onclick="selectRole('student')">
+                        <div class="role-icon student-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                                <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                            </svg>
+                        </div>
+                        <h3>Student</h3>
+                        <p>I want to learn and find mentors to guide me in my career journey</p>
+                        <div class="role-check">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 6L9 17l-5-5"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="role-option" onclick="selectRole('mentor')">
+                        <div class="role-icon mentor-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 00-3-3.87"/>
+                                <path d="M16 3.13a4 4 0 010 7.75"/>
+                            </svg>
+                        </div>
+                        <h3>Mentor</h3>
+                        <p>I want to share my expertise and help students grow in their careers</p>
+                        <div class="role-check">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 6L9 17l-5-5"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary btn-full" id="role-continue-btn" onclick="handleRoleContinue()" disabled>Continue</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROFILE SETUP SCREEN -->
+    <div id="profile-setup-screen" class="screen">
+        <div class="auth-container">
+            <div class="auth-card profile-setup-card">
+                <div class="auth-header">
+                    <h2>Complete Your Profile</h2>
+                    <p>Tell us more about yourself</p>
+                </div>
+                <form id="profile-setup-form" onsubmit="handleProfileSetup(event)">
+                    <div class="photo-upload-section">
+                        <div class="photo-preview" id="photo-preview">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                        </div>
+                        <div class="photo-upload-btn">
+                            <label for="profile-photo" class="btn btn-outline btn-sm">Upload Photo</label>
+                            <input type="file" id="profile-photo" accept="image/*" onchange="handlePhotoUpload(event)" hidden>
+                            <p class="photo-hint">JPG, PNG. Max 2MB</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="setup-bio">Bio</label>
+                        <textarea id="setup-bio" rows="3" placeholder="Tell us about yourself..."></textarea>
+                    </div>
+                    <div id="student-fields">
+                        <div class="form-group">
+                            <label for="setup-university">University / School</label>
+                            <input type="text" id="setup-university" placeholder="e.g., MIT, Stanford">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="setup-major">Major / Field of Study</label>
+                                <input type="text" id="setup-major" placeholder="e.g., Computer Science">
+                            </div>
+                            <div class="form-group">
+                                <label for="setup-year">Year</label>
+                                <select id="setup-year">
+                                    <option value="">Select year</option>
+                                    <option value="1st Year">1st Year</option>
+                                    <option value="2nd Year">2nd Year</option>
+                                    <option value="3rd Year">3rd Year</option>
+                                    <option value="4th Year">4th Year</option>
+                                    <option value="5th Year+">5th Year+</option>
+                                    <option value="Graduate">Graduate</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="mentor-fields" style="display:none;">
+                        <div class="form-group">
+                            <label for="setup-company">Company / Organization</label>
+                            <input type="text" id="setup-company" placeholder="e.g., Google, Microsoft">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="setup-position">Position</label>
+                                <input type="text" id="setup-position" placeholder="e.g., Senior Engineer">
+                            </div>
+                            <div class="form-group">
+                                <label for="setup-experience">Years of Experience</label>
+                                <select id="setup-experience">
+                                    <option value="">Select</option>
+                                    <option value="1-3 years">1-3 years</option>
+                                    <option value="3-5 years">3-5 years</option>
+                                    <option value="5-10 years">5-10 years</option>
+                                    <option value="10+ years">10+ years</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="setup-linkedin">LinkedIn Profile</label>
+                        <input type="url" id="setup-linkedin" placeholder="https://linkedin.com/in/yourprofile">
+                    </div>
+                    <div class="form-group">
+                        <label for="setup-github">GitHub / Portfolio</label>
+                        <input type="url" id="setup-github" placeholder="https://github.com/yourusername">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Complete Profile</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- MENTOR VERIFICATION SCREEN -->
+    <div id="mentor-verification-screen" class="screen">
+        <div class="auth-container">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <h2>Mentor Verification</h2>
+                    <p>Your profile needs admin approval before you can use mentor features.</p>
+                </div>
+                <div class="verification-status-card">
+                    <span id="mentor-verification-status" class="status-pill">Profile ready</span>
+                    <p id="mentor-verification-message">Your profile is complete. Send it to the admin for verification.</p>
+                </div>
+                <button id="mentor-verification-request" type="button" class="btn btn-primary btn-full" onclick="submitMentorVerification()">Send Verification Request</button>
+                <div class="auth-footer">
+                    <p><a href="#" onclick="handleLogout()">Sign out</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- STUDENT DASHBOARD -->
+    <div id="student-dashboard" class="screen dashboard-screen">
+        <nav class="dashboard-nav">
+            <div class="nav-brand">
+                <svg width="32" height="32" viewBox="0 0 60 60" fill="none">
+                    <circle cx="30" cy="30" r="28" stroke="url(#grad5)" stroke-width="3"/>
+                    <path d="M20 35L28 27L35 34L42 24" stroke="url(#grad5)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    <defs>
+                        <linearGradient id="grad5" x1="0" y1="0" x2="60" y2="60">
+                            <stop offset="0%" stop-color="#4A90D9"/>
+                            <stop offset="100%" stop-color="#2E4172"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <span>MentorConnect</span>
+            </div>
+            <div class="nav-links">
+                <a href="#" class="nav-link active" onclick="goHome()">Home</a>
+                <a href="#" class="nav-link" onclick="navigateTo('discover-screen')">Discover</a>
+                <a href="#" class="nav-link" onclick="navigateTo('community-home-screen')">Communities</a>
+                <a href="#" class="nav-link" onclick="openSessionsScreen()">Sessions</a>
+                <a href="#" class="nav-link" onclick="navigateTo('career-profile-screen')">Career</a>
+                <a href="#" class="nav-link" onclick="navigateTo('messages-screen')">Messages</a>
+                <a href="#" class="nav-link" onclick="navigateTo('saved-mentors-screen')">Saved</a>
+                <a href="#" class="nav-link" onclick="navigateTo('plans-screen')">Plans</a>
+                <a href="#" class="nav-link" onclick="navigateTo('profile-screen')">Profile</a>
+            </div>
+            <div class="nav-actions">
+                <button type="button" class="notification-button" title="Notifications" aria-label="Notifications">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                    </svg>
+                    <span class="notification-badge" id="ucn-badge-student" aria-hidden="true"></span>
+                </button>
+                <div class="nav-profile" onclick="navigateTo('profile-screen')">
+                    <div class="nav-avatar" id="nav-avatar-student">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                    </div>
+                    <span id="nav-name-student">Student</span>
+                </div>
+            </div>
+        </nav>
+        <main class="dashboard-main">
+            <section id="student-home" class="dashboard-section active">
+                <div class="dashboard-welcome">
+                    <h1>Welcome back, <span id="dash-firstname-student">Student</span>!</h1>
+                    <p>Ready to learn something new today?</p>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background:rgba(74, 144, 217, 0.15);color:#4A90D9;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                            </svg>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="stat-mentors">0</h3>
+                            <p>Connected Mentors</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background:rgba(74, 144, 217, 0.15);color:#4A90D9;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                            </svg>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="stat-sessions">0</h3>
+                            <p>Learning Sessions</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background:rgba(74, 144, 217, 0.15);color:#4A90D9;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                            </svg>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="stat-skills">0</h3>
+                            <p>Skills Learning</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="dashboard-content-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Your Skills</h3>
+                            <button class="btn btn-outline btn-sm" onclick="openSkillsModal()">Manage</button>
+                        </div>
+                        <div class="card-body">
+                            <div id="student-skills-list" class="skills-tags">
+                                <span class="empty-state">No skills added yet</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Your Interests</h3>
+                            <button class="btn btn-outline btn-sm" onclick="openInterestsModal()">Manage</button>
+                        </div>
+                        <div class="card-body">
+                            <div id="student-interests-list" class="skills-tags">
+                                <span class="empty-state">No interests added yet</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Recommended Mentors</h3>
+                    </div>
+                    <div class="card-body">
+                        <div id="recommended-mentors" class="mentors-grid">
+                            <p class="empty-state">Complete your profile to get mentor recommendations</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- MENTOR DASHBOARD -->
+    <div id="mentor-dashboard" class="screen dashboard-screen">
+        <nav class="dashboard-nav">
+            <div class="nav-brand">
+                <svg width="32" height="32" viewBox="0 0 60 60" fill="none">
+                    <circle cx="30" cy="30" r="28" stroke="url(#grad6)" stroke-width="3"/>
+                    <path d="M20 35L28 27L35 34L42 24" stroke="url(#grad6)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    <defs>
+                        <linearGradient id="grad6" x1="0" y1="0" x2="60" y2="60">
+                            <stop offset="0%" stop-color="#4A90D9"/>
+                            <stop offset="100%" stop-color="#2E4172"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <span>MentorConnect</span>
+            </div>
+            <div class="nav-links">
+                <a href="#" class="nav-link active" onclick="goHome()">Home</a>
+                <a href="#" class="nav-link" onclick="showMentorSection('students')">My Students</a>
+                <a href="#" class="nav-link" onclick="openSessionsScreen()">Sessions</a>
+                <a href="#" class="nav-link" onclick="navigateTo('incoming-requests-screen')">Requests</a>
+                <a href="#" class="nav-link" onclick="navigateTo('mentor-availability-screen')">Availability</a>
+                <a href="#" class="nav-link" onclick="navigateTo('messages-screen')">Messages</a>
+                <a href="#" class="nav-link" onclick="navigateTo('profile-screen')">Profile</a>
+            </div>
+            <div class="nav-actions">
+                <button type="button" class="notification-button" title="Notifications" aria-label="Notifications">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                    </svg>
+                    <span class="notification-badge" id="ucn-badge-mentor" aria-hidden="true"></span>
+                </button>
+                <div class="nav-profile" onclick="navigateTo('profile-screen')">
+                    <div class="nav-avatar" id="nav-avatar-mentor">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                    </div>
+                    <span id="nav-name-mentor">Mentor</span>
+                </div>
+            </div>
+        </nav>
+        <main class="dashboard-main">
+            <section id="mentor-home" class="dashboard-section active">
+                <div class="dashboard-welcome">
+                    <h1>Welcome back, <span id="dash-firstname-mentor">Mentor</span>!</h1>
+                    <p>Ready to make a difference today?</p>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background:rgba(74, 144, 217, 0.15);color:#4A90D9;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                            </svg>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="stat-students">0</h3>
+                            <p>Students Mentored</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background:rgba(74, 144, 217, 0.15);color:#4A90D9;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="4" width="18" height="18" rx="2"/>
+                                <path d="M16 2v4M8 2v4M3 10h18"/>
+                            </svg>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="stat-sessions-mentor">0</h3>
+                            <p>Sessions This Month</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background:rgba(251, 191, 36, 0.18);color:#F59E0B;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                            </svg>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="stat-rating">0.0</h3>
+                            <p>Average Rating</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="dashboard-content-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Your Expertise</h3>
+                            <button class="btn btn-outline btn-sm" onclick="openSkillsModal()">Manage</button>
+                        </div>
+                        <div class="card-body">
+                            <div id="mentor-skills-list" class="skills-tags">
+                                <span class="empty-state">No skills added yet</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Your Interests</h3>
+                            <button class="btn btn-outline btn-sm" onclick="openInterestsModal()">Manage</button>
+                        </div>
+                        <div class="card-body">
+                            <div id="mentor-interests-list" class="skills-tags">
+                                <span class="empty-state">No interests added yet</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Recent Student Requests <span id="student-requests-count" class="request-count-badge" style="display:none;">0</span></h3>
+                        <button class="btn btn-outline btn-sm" onclick="navigateTo('incoming-requests-screen')">View all</button>
+                    </div>
+                    <div class="card-body">
+                        <div id="student-requests" class="requests-list">
+                            <p class="empty-state">No student requests yet</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="mentor-students" class="dashboard-section">
+                <div class="dashboard-welcome">
+                    <h1>My Students</h1>
+                    <p>Students you are mentoring through MentorConnect.</p>
+                </div>
+                <div id="mentor-students-list" class="students-list">
+                    <p class="empty-state">No students yet.</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- PROFILE SCREEN -->
+    <div id="profile-screen" class="screen">
+        <div class="profile-container">
+            <div class="profile-header">
+                <button class="btn btn-outline btn-sm" onclick="goBack()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                    Back
+                </button>
+                <button class="btn btn-primary btn-sm" onclick="toggleEditProfile()">Edit Profile</button>
+            </div>
+            <div class="profile-card">
+                <div class="profile-cover"></div>
+                <div class="profile-info">
+                    <div class="profile-avatar-large" id="profile-avatar">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                    </div>
+                    <h2 id="profile-name">User Name</h2>
+                    <p id="profile-role" class="profile-role-badge">Student</p>
+                    <p id="profile-bio" class="profile-bio">No bio added yet</p>
+                </div>
+            </div>
+            <div class="profile-details-grid">
+                <div class="card">
+                    <div class="card-header"><h3>About</h3></div>
+                    <div class="card-body">
+                        <div class="detail-row" id="detail-university-row">
+                            <span class="detail-label">University</span>
+                            <span class="detail-value" id="detail-university">-</span>
+                        </div>
+                        <div class="detail-row" id="detail-major-row">
+                            <span class="detail-label">Major</span>
+                            <span class="detail-value" id="detail-major">-</span>
+                        </div>
+                        <div class="detail-row" id="detail-year-row">
+                            <span class="detail-label">Year</span>
+                            <span class="detail-value" id="detail-year">-</span>
+                        </div>
+                        <div class="detail-row" id="detail-company-row" style="display:none;">
+                            <span class="detail-label">Company</span>
+                            <span class="detail-value" id="detail-company">-</span>
+                        </div>
+                        <div class="detail-row" id="detail-position-row" style="display:none;">
+                            <span class="detail-label">Position</span>
+                            <span class="detail-value" id="detail-position">-</span>
+                        </div>
+                        <div class="detail-row" id="detail-experience-row" style="display:none;">
+                            <span class="detail-label">Experience</span>
+                            <span class="detail-value" id="detail-experience">-</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header"><h3>Skills</h3></div>
+                    <div class="card-body">
+                        <div id="profile-skills" class="skills-tags">
+                            <span class="empty-state">No skills added</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header"><h3>Interests</h3></div>
+                    <div class="card-body">
+                        <div id="profile-interests" class="skills-tags">
+                            <span class="empty-state">No interests added</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header"><h3>Contact & Links</h3></div>
+                    <div class="card-body">
+                        <div class="detail-row">
+                            <span class="detail-label">Email</span>
+                            <span class="detail-value" id="detail-email">-</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">LinkedIn</span>
+                            <a href="#" class="detail-value link" id="detail-linkedin" target="_blank">-</a>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">GitHub</span>
+                            <a href="#" class="detail-value link" id="detail-github" target="_blank">-</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="grid-column: 1 / -1;">
+                    <div class="card-header"><h3>Security</h3></div>
+                    <div class="card-body">
+                        <div class="settings-item" onclick="openChangePasswordModal()">
+                            <div class="settings-item-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="11" width="18" height="11" rx="2"/>
+                                    <path d="M7 11V7a5 5 0 0110 0v4"/>
+                                </svg>
+                            </div>
+                            <div class="settings-item-info">
+                                <h4>Change Password</h4>
+                                <p>Update your password</p>
+                            </div>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 18l6-6-6-6"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="grid-column: 1 / -1;">
+                    <div class="card-header"><h3 style="color:#EF4444;">Danger Zone</h3></div>
+                    <div class="card-body">
+                        <div class="settings-item" onclick="handleLogout()">
+                            <div class="settings-item-icon" style="background:rgba(248, 113, 113, 0.2);color:#EF4444;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/>
+                                    <path d="M16 17l5-5-5-5"/>
+                                    <path d="M21 12H9"/>
+                                </svg>
+                            </div>
+                            <div class="settings-item-info">
+                                <h4 style="color:#EF4444;">Log Out</h4>
+                                <p>Sign out of your account</p>
+                            </div>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 18l6-6-6-6"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SETTINGS SCREEN -->
+    <div id="settings-screen" class="screen">
+        <div class="settings-container">
+            <div class="settings-header">
+                <button class="btn btn-outline btn-sm" onclick="goBack()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                    Back
+                </button>
+                <h2>Settings</h2>
+            </div>
+            <div class="settings-grid">
+                <div class="card">
+                    <div class="card-header"><h3>Account Settings</h3></div>
+                    <div class="card-body">
+                        <div class="settings-item" onclick="navigateTo('profile-screen')">
+                            <div class="settings-item-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                                    <circle cx="12" cy="7" r="4"/>
+                                </svg>
+                            </div>
+                            <div class="settings-item-info">
+                                <h4>Edit Profile</h4>
+                                <p>Update your personal information</p>
+                            </div>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 18l6-6-6-6"/>
+                            </svg>
+                        </div>
+                        <div class="settings-item" onclick="openChangePasswordModal()">
+                            <div class="settings-item-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="11" width="18" height="11" rx="2"/>
+                                    <path d="M7 11V7a5 5 0 0110 0v4"/>
+                                </svg>
+                            </div>
+                            <div class="settings-item-info">
+                                <h4>Change Password</h4>
+                                <p>Update your password</p>
+                            </div>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 18l6-6-6-6"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header"><h3>Preferences</h3></div>
+                    <div class="card-body">
+                        <div class="settings-item">
+                            <div class="settings-item-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                                    <path d="M13.73 21a2 2 0 01-3.46 0"/>
+                                </svg>
+                            </div>
+                            <div class="settings-item-info">
+                                <h4>Notifications</h4>
+                                <p>Manage notification preferences</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="settings-item">
+                            <div class="settings-item-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="3"/>
+                                    <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/>
+                                </svg>
+                            </div>
+                            <div class="settings-item-info">
+                                <h4>Dark Mode</h4>
+                                <p>Toggle dark theme</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="dark-mode-toggle">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header"><h3>Danger Zone</h3></div>
+                    <div class="card-body">
+                        <div class="settings-item" onclick="handleLogout()">
+                            <div class="settings-item-icon" style="background:rgba(248, 113, 113, 0.2);color:#EF4444;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/>
+                                    <path d="M16 17l5-5-5-5"/>
+                                    <path d="M21 12H9"/>
+                                </svg>
+                            </div>
+                            <div class="settings-item-info">
+                                <h4 style="color:#EF4444;">Log Out</h4>
+                                <p>Sign out of your account</p>
+                            </div>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 18l6-6-6-6"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SKILLS MODAL -->
+    <div id="skills-modal" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Manage Skills</h3>
+                <button class="modal-close" onclick="closeModal('skills-modal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Add a skill</label>
+                    <div class="input-add-wrapper">
+                        <input type="text" id="new-skill-input" placeholder="Type a skill and press Enter" onkeydown="if(event.key==='Enter'){event.preventDefault();addSkill();}">
+                        <button class="btn btn-primary btn-sm" onclick="addSkill()">Add</button>
+                    </div>
+                </div>
+                <div id="modal-skills-list" class="skills-tags"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- INTERESTS MODAL -->
+    <div id="interests-modal" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Manage Interests</h3>
+                <button class="modal-close" onclick="closeModal('interests-modal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Add an interest</label>
+                    <div class="input-add-wrapper">
+                        <input type="text" id="new-interest-input" placeholder="Type an interest and press Enter" onkeydown="if(event.key==='Enter'){event.preventDefault();addInterest();}">
+                        <button class="btn btn-primary btn-sm" onclick="addInterest()">Add</button>
+                    </div>
+                </div>
+                <div id="modal-interests-list" class="skills-tags"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHANGE PASSWORD MODAL -->
+    <div id="change-password-modal" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Change Password</h3>
+                <button class="modal-close" onclick="closeModal('change-password-modal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form onsubmit="handleChangePassword(event)">
+                    <div class="form-group">
+                        <label for="current-password">Current Password</label>
+                        <input type="password" id="current-password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="new-password">New Password</label>
+                        <input type="password" id="new-password" required minlength="8">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm-new-password">Confirm New Password</label>
+                        <input type="password" id="confirm-new-password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Update Password</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- EDIT PROFILE MODAL -->
+    <div id="edit-profile-modal" class="modal-overlay">
+        <div class="modal modal-lg">
+            <div class="modal-header">
+                <h3>Edit Profile</h3>
+                <button class="modal-close" onclick="closeModal('edit-profile-modal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="edit-profile-form" onsubmit="handleEditProfile(event)">
+                    <div class="form-group">
+                        <label>Profile Photo</label>
+                        <div class="edit-photo-row">
+                            <div class="edit-photo-preview" id="edit-photo-preview"></div>
+                            <div class="edit-photo-actions">
+                                <input type="file" id="edit-profile-photo" accept="image/*" style="display:none;" onchange="handleEditPhotoUpload(event)">
+                                <button type="button" class="btn btn-outline btn-sm" id="edit-photo-add-btn" onclick="document.getElementById('edit-profile-photo').click()">📷 Add Photo</button>
+                                <button type="button" class="btn btn-outline btn-sm" id="edit-photo-remove-btn" style="display:none;color:#EF4444;border-color:#FECACA;" onclick="removeEditPhoto()">Remove</button>
+                            </div>
+                        </div>
+                        <p class="edit-photo-hint">JPG or PNG, up to 2MB. Shows on your avatar across the app.</p>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="edit-firstname">First Name</label>
+                            <input type="text" id="edit-firstname" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-lastname">Last Name</label>
+                            <input type="text" id="edit-lastname" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-bio">Bio</label>
+                        <textarea id="edit-bio" rows="3"></textarea>
+                    </div>
+                    <div id="edit-student-fields">
+                        <div class="form-group">
+                            <label for="edit-university">University</label>
+                            <input type="text" id="edit-university">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="edit-major">Major</label>
+                                <input type="text" id="edit-major">
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-year">Year</label>
+                                <select id="edit-year">
+                                    <option value="">Select year</option>
+                                    <option value="1st Year">1st Year</option>
+                                    <option value="2nd Year">2nd Year</option>
+                                    <option value="3rd Year">3rd Year</option>
+                                    <option value="4th Year">4th Year</option>
+                                    <option value="5th Year+">5th Year+</option>
+                                    <option value="Graduate">Graduate</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="edit-mentor-fields" style="display:none;">
+                        <div class="form-group">
+                            <label for="edit-company">Company</label>
+                            <input type="text" id="edit-company">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="edit-position">Position</label>
+                                <input type="text" id="edit-position">
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-experience">Experience</label>
+                                <select id="edit-experience">
+                                    <option value="">Select</option>
+                                    <option value="1-3 years">1-3 years</option>
+                                    <option value="3-5 years">3-5 years</option>
+                                    <option value="5-10 years">5-10 years</option>
+                                    <option value="10+ years">10+ years</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-linkedin">LinkedIn</label>
+                        <input type="url" id="edit-linkedin">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-github">GitHub / Portfolio</label>
+                        <input type="url" id="edit-github">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Save Changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADMIN DASHBOARD -->
+    <div id="admin-dashboard" class="screen dashboard-screen">
+        <nav class="dashboard-nav">
+            <div class="nav-brand">
+                <svg width="32" height="32" viewBox="0 0 60 60" fill="none">
+                    <circle cx="30" cy="30" r="28" stroke="url(#grad9)" stroke-width="3"/>
+                    <path d="M20 35L28 27L35 34L42 24" stroke="url(#grad9)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    <defs>
+                        <linearGradient id="grad9" x1="0" y1="0" x2="60" y2="60">
+                            <stop offset="0%" stop-color="#4A90D9"/>
+                            <stop offset="100%" stop-color="#2E4172"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <span>MentorConnect Admin</span>
+            </div>
+            <div class="nav-links"></div>
+            <div class="nav-actions">
+                <button type="button" class="notification-button" title="Notifications" aria-label="Notifications">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                    </svg>
+                    <span class="notification-badge" id="ucn-badge-admin" aria-hidden="true"></span>
+                </button>
+                <div class="admin-profile-wrap">
+                    <div class="nav-profile" onclick="toggleAdminProfileMenu(event)">
+                        <div class="nav-avatar" id="admin-nav-avatar">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            </svg>
+                        </div>
+                        <span id="admin-nav-name">Admin</span>
+                        <svg class="profile-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                    <div id="admin-profile-menu" class="admin-profile-menu hidden">
+                        <div class="apm-header">
+                            <div class="nav-avatar">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 id="apm-name">Portal Admin</h4>
+                                <p id="apm-role">Administrator</p>
+                            </div>
+                        </div>
+                        <button class="apm-item" onclick="navigateTo('admin-dashboard')">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                            Admin Dashboard
+                        </button>
+                        <button class="apm-item" onclick="adminCloseProfileMenu(); openChangePasswordModal();">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                            Change Password
+                        </button>
+                        <button class="apm-item apm-logout" onclick="handleLogout()">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+                            Logout
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <main class="dashboard-main">
+            <section>
+                <h1 class="welcome-title">Admin Portal</h1>
+                <p class="demo-hint" style="margin-bottom:20px;">Manage users, monitor sessions, and moderate community content.</p>
+                <div class="tab-row" id="admin-tabs"></div>
+                <div id="admin-content">
+                    <p class="empty-state">Loading admin data…</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- DISCOVER HOME SCREEN -->
+    <div id="discover-screen" class="screen discover-screen">
+        <nav class="dashboard-nav">
+            <div class="nav-brand">
+                <svg width="32" height="32" viewBox="0 0 60 60" fill="none">
+                    <circle cx="30" cy="30" r="28" stroke="url(#grad-di)" stroke-width="3"/>
+                    <path d="M20 35L28 27L35 34L42 24" stroke="url(#grad-di)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    <defs><linearGradient id="grad-di" x1="0" y1="0" x2="60" y2="60"><stop offset="0%" stop-color="#4A90D9"/><stop offset="100%" stop-color="#2E4172"/></linearGradient></defs>
+                </svg>
+                <span>Discover</span>
+            </div>
+            <div class="nav-links">
+                <a href="#" class="nav-link active">Discover</a>
+                <a href="#" class="nav-link" onclick="navigateTo('student-dashboard')">Dashboard</a>
+                <a href="#" class="nav-link" onclick="navigateTo('saved-mentors-screen')">Saved</a>
+            </div>
+            <div class="nav-profile" onclick="navigateTo('profile-screen')">
+                <div class="nav-avatar" id="discover-nav-avatar">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </div>
+                <span id="discover-nav-name">Student</span>
+            </div>
+        </nav>
+        <main class="dashboard-main">
+            <!-- Search Bar -->
+            <div class="discover-search-section">
+                <div class="discover-search-bar">
+                    <svg class="discover-search-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                    <input type="text" id="discover-search-input" placeholder="Search by skill, domain, or keyword..." onkeydown="if(event.key==='Enter')performSearch()">
+                    <button class="btn btn-primary" onclick="performSearch()">Search</button>
+                </div>
+                <div class="search-type-tabs">
+                    <button class="search-tab active" onclick="setSearchType('all')">All</button>
+                    <button class="search-tab" onclick="setSearchType('domain')">Domains</button>
+                    <button class="search-tab" onclick="setSearchType('skill')">Skills</button>
+                    <button class="search-tab" onclick="setSearchType('keyword')">Keywords</button>
+                </div>
+            </div>
+
+            <!-- Recently Searched -->
+            <div class="card" id="recent-searches-card">
+                <div class="card-header"><h3>Recently Searched</h3></div>
+                <div class="card-body">
+                    <div id="recent-searches-list" class="recent-searches-tags">
+                        <span class="empty-state">No recent searches</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Popular Domains -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Popular Domains</h3>
+                    <button class="btn btn-outline btn-sm" onclick="navigateTo('popular-domains-screen')">View All</button>
+                </div>
+                <div class="card-body">
+                    <div id="popular-domains-grid" class="domains-grid">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recommended for You -->
+            <div class="card">
+                <div class="card-header"><h3>Recommended For You</h3></div>
+                <div class="card-body">
+                    <div id="discover-recommended-mentors" class="mentors-grid">
+                        <p class="empty-state">Complete your profile to get recommendations</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- SEARCH RESULTS SCREEN -->
+    <div id="search-results-screen" class="screen discover-screen">
+        <nav class="dashboard-nav">
+            <div class="nav-brand">
+                <svg width="32" height="32" viewBox="0 0 60 60" fill="none">
+                    <circle cx="30" cy="30" r="28" stroke="url(#grad-sr)" stroke-width="3"/>
+                    <path d="M20 35L28 27L35 34L42 24" stroke="url(#grad-sr)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    <defs><linearGradient id="grad-sr" x1="0" y1="0" x2="60" y2="60"><stop offset="0%" stop-color="#4A90D9"/><stop offset="100%" stop-color="#2E4172"/></linearGradient></defs>
+                </svg>
+                <span>Search Results</span>
+            </div>
+            <div class="nav-links">
+                <a href="#" class="nav-link" onclick="navigateTo('discover-screen')">Discover</a>
+                <a href="#" class="nav-link" onclick="navigateTo('student-dashboard')">Dashboard</a>
+            </div>
+            <div class="nav-profile" onclick="navigateTo('profile-screen')">
+                <div class="nav-avatar" id="sr-nav-avatar">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </div>
+                <span id="sr-nav-name">Student</span>
+            </div>
+        </nav>
+        <main class="dashboard-main">
+            <div class="search-results-header">
+                <div class="search-results-info">
+                    <h2 id="search-results-title">Results for "UI/UX Design"</h2>
+                    <p id="search-results-count">0 mentors found</p>
+                </div>
+                <button class="btn btn-outline" onclick="navigateTo('filter-screen')">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/></svg>
+                    Filters
+                </button>
+            </div>
+            <div class="search-results-layout">
+                <div class="search-results-main">
+                    <div id="search-results-mentors" class="mentors-grid">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- FILTER SCREEN -->
+    <div id="filter-screen" class="screen">
+        <div class="filter-container">
+            <div class="filter-header">
+                <button class="btn btn-outline btn-sm" onclick="goBack()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    Back
+                </button>
+                <h2>Filters</h2>
+                <button class="btn btn-outline btn-sm" onclick="clearFilters()">Clear All</button>
+            </div>
+            <div class="filter-content">
+                <div class="card">
+                    <div class="card-header"><h3>Experience Level</h3></div>
+                    <div class="card-body">
+                        <div class="filter-options">
+                            <label class="filter-option"><input type="checkbox" value="1-3 years" onchange="applyFilters()"> 1-3 years</label>
+                            <label class="filter-option"><input type="checkbox" value="3-5 years" onchange="applyFilters()"> 3-5 years</label>
+                            <label class="filter-option"><input type="checkbox" value="5-10 years" onchange="applyFilters()"> 5-10 years</label>
+                            <label class="filter-option"><input type="checkbox" value="10+ years" onchange="applyFilters()"> 10+ years</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header"><h3>Rating</h3></div>
+                    <div class="card-body">
+                        <div class="filter-options">
+                            <label class="filter-option"><input type="radio" name="rating" value="4" onchange="applyFilters()"> 4+ Stars</label>
+                            <label class="filter-option"><input type="radio" name="rating" value="3" onchange="applyFilters()"> 3+ Stars</label>
+                            <label class="filter-option"><input type="radio" name="rating" value="2" onchange="applyFilters()"> 2+ Stars</label>
+                            <label class="filter-option"><input type="radio" name="rating" value="0" onchange="applyFilters()" checked> Any Rating</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header"><h3>Domain</h3></div>
+                    <div class="card-body">
+                        <div class="filter-options" id="filter-domains-list">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary btn-full" onclick="navigateTo('search-results-screen')">Apply Filters</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MENTOR PROFILE SCREEN (Detailed) -->
+    <div id="mentor-detail-screen" class="screen">
+        <div class="mentor-detail-container">
+            <button class="btn btn-outline btn-sm back-btn" onclick="goBack()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                Back
+            </button>
+            <div class="mentor-detail-card">
+                <div class="mentor-detail-cover"></div>
+                <div class="mentor-detail-header">
+                    <div class="mentor-detail-avatar" id="mentor-detail-avatar">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                    <div class="mentor-detail-info">
+                        <h2 id="mentor-detail-name">Mentor Name</h2>
+                        <p id="mentor-detail-title">Position at Company</p>
+                        <div class="mentor-detail-meta">
+                            <span class="mentor-rating" id="mentor-detail-rating">⭐ 0.0</span>
+                            <span class="mentor-sessions" id="mentor-detail-sessions">0 sessions</span>
+                        </div>
+                    </div>
+                    <div class="mentor-detail-actions">
+                        <button class="btn btn-primary" id="mentor-detail-book-btn" onclick="startBooking()">Book Session</button>
+                        <button class="btn btn-outline" onclick="startChatWithCurrentMentor()">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 11.5a8.38 8.38 0 01-9 8.5 8.5 8.5 0 01-4.2-1.1L3 20l1.1-4.8A8.5 8.5 0 113 11.5"/>
+                                <path d="M8 12h.01M12 12h.01M16 12h.01"/>
+                            </svg>
+                            Start Chatting
+                        </button>
+                        <button class="btn btn-outline" id="save-mentor-btn" onclick="toggleSaveMentor()">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg>
+                            Save
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="mentor-detail-body">
+                <div class="card">
+                    <div class="card-header"><h3>About</h3></div>
+                    <div class="card-body"><p id="mentor-detail-bio">No bio available</p></div>
+                </div>
+                <div class="card">
+                    <div class="card-header"><h3>Expertise</h3></div>
+                    <div class="card-body"><div id="mentor-detail-skills" class="skills-tags"></div></div>
+                </div>
+                <div class="card">
+                    <div class="card-header"><h3>Experience</h3></div>
+                    <div class="card-body">
+                        <div class="detail-row"><span class="detail-label">Company</span><span class="detail-value" id="mentor-detail-company">-</span></div>
+                        <div class="detail-row"><span class="detail-label">Position</span><span class="detail-value" id="mentor-detail-position">-</span></div>
+                        <div class="detail-row"><span class="detail-label">Experience</span><span class="detail-value" id="mentor-detail-experience">-</span></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header"><h3>Contact</h3></div>
+                    <div class="card-body">
+                        <div class="detail-row"><span class="detail-label">LinkedIn</span><a href="#" class="detail-value link" id="mentor-detail-linkedin" target="_blank">-</a></div>
+                        <div class="detail-row"><span class="detail-label">GitHub</span><a href="#" class="detail-value link" id="mentor-detail-github" target="_blank">-</a></div>
+                    </div>
+                </div>
+                <div class="card mentor-reviews-card">
+                    <div class="card-header">
+                        <h3>Reviews</h3>
+                        <button type="button" class="btn btn-outline btn-sm" id="mentor-reviews-toggle" onclick="toggleMentorReviews()">See reviews</button>
+                    </div>
+                    <div class="card-body" id="mentor-reviews" hidden></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SAVED MENTORS SCREEN -->
+    <div id="saved-mentors-screen" class="screen discover-screen">
+        <nav class="dashboard-nav">
+            <div class="nav-brand">
+                <svg width="32" height="32" viewBox="0 0 60 60" fill="none">
+                    <circle cx="30" cy="30" r="28" stroke="url(#grad-sm)" stroke-width="3"/>
+                    <path d="M20 35L28 27L35 34L42 24" stroke="url(#grad-sm)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    <defs><linearGradient id="grad-sm" x1="0" y1="0" x2="60" y2="60"><stop offset="0%" stop-color="#4A90D9"/><stop offset="100%" stop-color="#2E4172"/></linearGradient></defs>
+                </svg>
+                <span>Saved Mentors</span>
+            </div>
+            <div class="nav-links">
+                <a href="#" class="nav-link" onclick="navigateTo('discover-screen')">Discover</a>
+                <a href="#" class="nav-link" onclick="navigateTo('student-dashboard')">Dashboard</a>
+                <a href="#" class="nav-link active">Saved</a>
+            </div>
+            <div class="nav-profile" onclick="navigateTo('profile-screen')">
+                <div class="nav-avatar" id="sm-nav-avatar">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </div>
+                <span id="sm-nav-name">Student</span>
+            </div>
+        </nav>
+        <main class="dashboard-main">
+            <div class="dashboard-welcome">
+                <h1>Saved Mentors 🔖</h1>
+                <p>Your favorite mentors in one place</p>
+            </div>
+            <div id="saved-mentors-grid" class="mentors-grid">
+                <p class="empty-state">No saved mentors yet. Start discovering!</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- POPULAR DOMAINS SCREEN -->
+    <div id="popular-domains-screen" class="screen discover-screen">
+        <nav class="dashboard-nav">
+            <div class="nav-brand">
+                <svg width="32" height="32" viewBox="0 0 60 60" fill="none">
+                    <circle cx="30" cy="30" r="28" stroke="url(#grad-pd)" stroke-width="3"/>
+                    <path d="M20 35L28 27L35 34L42 24" stroke="url(#grad-pd)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    <defs><linearGradient id="grad-pd" x1="0" y1="0" x2="60" y2="60"><stop offset="0%" stop-color="#4A90D9"/><stop offset="100%" stop-color="#2E4172"/></linearGradient></defs>
+                </svg>
+                <span>Popular Domains</span>
+            </div>
+            <div class="nav-links">
+                <a href="#" class="nav-link" onclick="navigateTo('discover-screen')">Discover</a>
+                <a href="#" class="nav-link" onclick="navigateTo('student-dashboard')">Dashboard</a>
+            </div>
+            <div class="nav-profile" onclick="navigateTo('profile-screen')">
+                <div class="nav-avatar" id="pd-nav-avatar">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </div>
+                <span id="pd-nav-name">Student</span>
+            </div>
+        </nav>
+        <main class="dashboard-main">
+            <div class="dashboard-welcome">
+                <h1>Popular Domains 🔥</h1>
+                <p>Explore mentors by domain</p>
+            </div>
+            <div id="all-domains-grid" class="domains-grid-large">
+                <!-- Populated by JS -->
+            </div>
+        </main>
+    </div>
+
+    <!-- RECOMMENDED MENTORS SCREEN -->
+    <div id="recommended-mentors-screen" class="screen discover-screen">
+        <nav class="dashboard-nav">
+            <div class="nav-brand">
+                <svg width="32" height="32" viewBox="0 0 60 60" fill="none">
+                    <circle cx="30" cy="30" r="28" stroke="url(#grad-rm)" stroke-width="3"/>
+                    <path d="M20 35L28 27L35 34L42 24" stroke="url(#grad-rm)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    <defs><linearGradient id="grad-rm" x1="0" y1="0" x2="60" y2="60"><stop offset="0%" stop-color="#4A90D9"/><stop offset="100%" stop-color="#2E4172"/></linearGradient></defs>
+                </svg>
+                <span>Recommended</span>
+            </div>
+            <div class="nav-links">
+                <a href="#" class="nav-link active">For You</a>
+                <a href="#" class="nav-link" onclick="navigateTo('discover-screen')">Discover</a>
+                <a href="#" class="nav-link" onclick="navigateTo('my-connections-screen')">My Network</a>
+            </div>
+            <div class="nav-profile" onclick="navigateTo('profile-screen')">
+                <div class="nav-avatar" id="rm-nav-avatar">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </div>
+                <span id="rm-nav-name">Student</span>
+            </div>
+        </nav>
+        <main class="dashboard-main">
+            <div class="dashboard-welcome">
+                <h1>Recommended For You ✨</h1>
+                <p>Personalized mentor matches based on your profile</p>
+            </div>
+            <div class="card">
+                <div class="card-header"><h3>How Matching Works</h3></div>
+                <div class="card-body">
+                    <div class="match-explanation">
+                        <div class="match-factor"><span class="match-factor-icon">🎯</span><span>Skills overlap with mentor expertise</span></div>
+                        <div class="match-factor"><span class="match-factor-icon">💡</span><span>Shared interests and domains</span></div>
+                        <div class="match-factor"><span class="match-factor-icon">⭐</span><span>Mentor rating and experience</span></div>
+                        <div class="match-factor"><span class="match-factor-icon">📚</span><span>Alignment with your learning goals</span></div>
+                    </div>
+                </div>
+            </div>
+            <div id="recommended-mentors-list" class="mentors-grid">
+                <p class="empty-state">Complete your profile to get recommendations</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- MATCH DETAILS SCREEN -->
+    <div id="match-details-screen" class="screen">
+        <div class="match-detail-container">
+            <button class="btn btn-outline btn-sm back-btn" onclick="goBack()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                Back
+            </button>
+            <div class="match-score-card">
+                <div class="match-score-circle">
+                    <svg class="match-score-ring" width="120" height="120" viewBox="0 0 120 120">
+                        <circle cx="60" cy="60" r="54" fill="none" stroke="#E5E7EB" stroke-width="8"/>
+                        <circle id="match-score-progress" cx="60" cy="60" r="54" fill="none" stroke="url(#matchGrad)" stroke-width="8" stroke-linecap="round" stroke-dasharray="339.292" stroke-dashoffset="339.292" transform="rotate(-90 60 60)"/>
+                        <defs><linearGradient id="matchGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#4A90D9"/><stop offset="100%" stop-color="#2E4172"/></linearGradient></defs>
+                    </svg>
+                    <div class="match-score-text">
+                        <span id="match-score-value" class="match-score-number">0%</span>
+                        <span class="match-score-label">Match</span>
+                    </div>
+                </div>
+                <h2 id="match-mentor-name">Mentor Name</h2>
+                <p id="match-mentor-title">Position at Company</p>
+            </div>
+            <div class="card">
+                <div class="card-header"><h3>Why This Mentor?</h3></div>
+                <div class="card-body">
+                    <div id="match-reasons-list" class="match-reasons"></div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header"><h3>Match Breakdown</h3></div>
+                <div class="card-body">
+                    <div class="match-bars">
+                        <div class="match-bar-item">
+                            <div class="match-bar-label"><span>🎯 Skills Overlap</span><span id="match-skills-score">0%</span></div>
+                            <div class="match-bar-track"><div id="match-skills-bar" class="match-bar-fill" style="width:0%"></div></div>
+                        </div>
+                        <div class="match-bar-item">
+                            <div class="match-bar-label"><span>💡 Shared Interests</span><span id="match-interests-score">0%</span></div>
+                            <div class="match-bar-track"><div id="match-interests-bar" class="match-bar-fill" style="width:0%"></div></div>
+                        </div>
+                        <div class="match-bar-item">
+                            <div class="match-bar-label"><span>⭐ Experience Level</span><span id="match-experience-score">0%</span></div>
+                            <div class="match-bar-track"><div id="match-experience-bar" class="match-bar-fill" style="width:0%"></div></div>
+                        </div>
+                        <div class="match-bar-item">
+                            <div class="match-bar-label"><span>📚 Domain Fit</span><span id="match-domain-score">0%</span></div>
+                            <div class="match-bar-track"><div id="match-domain-bar" class="match-bar-fill" style="width:0%"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header"><h3>Mentor Profile</h3></div>
+                <div class="card-body">
+                    <p id="match-bio" class="profile-bio">No bio available</p>
+                    <div id="match-skills" class="skills-tags" style="margin-top:12px;"></div>
+                </div>
+            </div>
+            <div class="match-actions">
+                <button class="btn btn-primary btn-full" id="send-request-btn" onclick="sendConnectionRequest()">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M20 8v6M23 11h-6"/></svg>
+                    Send Connection Request
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- INCOMING REQUESTS SCREEN -->
+    <div id="incoming-requests-screen" class="screen discover-screen">
+        <nav class="dashboard-nav">
+            <div class="nav-brand">
+                <svg width="32" height="32" viewBox="0 0 60 60" fill="none">
+                    <circle cx="30" cy="30" r="28" stroke="url(#grad-ir)" stroke-width="3"/>
+                    <path d="M20 35L28 27L35 34L42 24" stroke="url(#grad-ir)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    <defs><linearGradient id="grad-ir" x1="0" y1="0" x2="60" y2="60"><stop offset="0%" stop-color="#4A90D9"/><stop offset="100%" stop-color="#2E4172"/></linearGradient></defs>
+                </svg>
+                <span>Requests</span>
+            </div>
+            <div class="nav-links">
+                <a href="#" class="nav-link active">Incoming</a>
+                <a href="#" class="nav-link" onclick="navigateTo('my-connections-screen')">My Network</a>
+            </div>
+            <div class="nav-profile" onclick="navigateTo('profile-screen')">
+                <div class="nav-avatar" id="ir-nav-avatar">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </div>
+                <span id="ir-nav-name">User</span>
+            </div>
+        </nav>
+        <main class="dashboard-main">
+            <div class="dashboard-welcome">
+                <h1>Connection Requests 📨</h1>
+                <p>Review and manage incoming requests</p>
+            </div>
+            <div id="incoming-requests-list" class="requests-list">
+                <p class="empty-state">No incoming requests</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- MY CONNECTIONS SCREEN -->
+    <div id="my-connections-screen" class="screen discover-screen">
+        <nav class="dashboard-nav">
+            <div class="nav-brand">
+                <svg width="32" height="32" viewBox="0 0 60 60" fill="none">
+                    <circle cx="30" cy="30" r="28" stroke="url(#grad-mc)" stroke-width="3"/>
+                    <path d="M20 35L28 27L35 34L42 24" stroke="url(#grad-mc)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    <defs><linearGradient id="grad-mc" x1="0" y1="0" x2="60" y2="60"><stop offset="0%" stop-color="#4A90D9"/><stop offset="100%" stop-color="#2E4172"/></linearGradient></defs>
+                </svg>
+                <span>My Network</span>
+            </div>
+            <div class="nav-links">
+                <a href="#" class="nav-link" onclick="navigateTo('recommended-mentors-screen')">For You</a>
+                <a href="#" class="nav-link active">My Network</a>
+                <a href="#" class="nav-link" onclick="navigateTo('incoming-requests-screen')">Requests</a>
+            </div>
+            <div class="nav-profile" onclick="navigateTo('profile-screen')">
+                <div class="nav-avatar" id="mc-nav-avatar">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </div>
+                <span id="mc-nav-name">User</span>
+            </div>
+        </nav>
+        <main class="dashboard-main">
+            <div class="dashboard-welcome">
+                <h1>My Connections 🤝</h1>
+                <p>Your professional network</p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background:rgba(74, 144, 217, 0.15);color:#4A90D9;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+                    <div class="stat-info"><h3 id="connections-count">0</h3><p>Connections</p></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background:rgba(251, 191, 36, 0.18);color:#F59E0B;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/></svg></div>
+                    <div class="stat-info"><h3 id="pending-count">0</h3><p>Pending</p></div>
+                </div>
+            </div>
+            <div id="connections-list" class="mentors-grid">
+                <p class="empty-state">No connections yet</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- CONNECTION ACTIVITY SCREEN -->
+    <div id="connection-activity-screen" class="screen">
+        <div class="settings-container">
+            <div class="settings-header">
+                <button class="btn btn-outline btn-sm" onclick="goBack()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back</button>
+                <h2>Activity</h2>
+            </div>
+            <div id="activity-list" class="activity-list"><p class="empty-state">No activity yet</p></div>
+        </div>
+    </div>
+
+    <!-- COMMUNITY HOME SCREEN -->
+    <div id="community-home-screen" class="screen discover-screen">
+        <nav class="dashboard-nav">
+            <div class="nav-brand">
+                <svg width="32" height="32" viewBox="0 0 60 60" fill="none">
+                    <circle cx="30" cy="30" r="28" stroke="url(#grad-ch)" stroke-width="3"/>
+                    <path d="M20 35L28 27L35 34L42 24" stroke="url(#grad-ch)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    <defs><linearGradient id="grad-ch" x1="0" y1="0" x2="60" y2="60"><stop offset="0%" stop-color="#4A90D9"/><stop offset="100%" stop-color="#2E4172"/></linearGradient></defs>
+                </svg>
+                <span>MentorConnect</span>
+            </div>
+            <div class="nav-links">
+                <a href="#" class="nav-link nav-icon-link" onclick="showStudentDashboard()" title="Home">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+                        <polyline points="9 22 9 12 15 12 15 22"/>
+                    </svg>
+                </a>
+                <a href="#" class="nav-link" onclick="navigateTo('discover-screen')">Discover</a>
+                <a href="#" class="nav-link active">Communities</a>
+                <a href="#" class="nav-link" onclick="navigateTo('messages-screen')">Messages</a>
+                <a href="#" class="nav-link" onclick="navigateTo('saved-mentors-screen')">Saved</a>
+                <a href="#" class="nav-link" onclick="navigateTo('profile-screen')">Profile</a>
+            </div>
+            <div class="nav-actions">
+                <div class="nav-profile" onclick="navigateTo('profile-screen')">
+                    <div class="nav-avatar" id="ch-nav-avatar">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                    <span id="ch-nav-name">User</span>
+                </div>
+            </div>
+        </nav>
+        <main class="dashboard-main">
+            <div class="dashboard-welcome">
+                <h1>Communities 🏘️</h1>
+                <p>Join domain communities and learn together</p>
+            </div>
+            <div class="card">
+                <div class="card-header"><h3>My Communities</h3></div>
+                <div class="card-body">
+                    <div id="my-communities-grid" class="domains-grid">
+                        <span class="empty-state">No communities joined yet</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3>Recent Discussions</h3>
+                    <button class="btn btn-outline btn-sm" onclick="navigateTo('community-list-screen')">Browse All</button>
+                </div>
+                <div class="card-body">
+                    <div id="recent-discussions-list" class="posts-list">
+                        <p class="empty-state">No discussions yet</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- COMMUNITY LIST SCREEN -->
+    <div id="community-list-screen" class="screen discover-screen">
+        <nav class="dashboard-nav">
+            <div class="nav-brand">
+                <svg width="32" height="32" viewBox="0 0 60 60" fill="none">
+                    <circle cx="30" cy="30" r="28" stroke="url(#grad-cl)" stroke-width="3"/>
+                    <path d="M20 35L28 27L35 34L42 24" stroke="url(#grad-cl)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    <defs><linearGradient id="grad-cl" x1="0" y1="0" x2="60" y2="60"><stop offset="0%" stop-color="#4A90D9"/><stop offset="100%" stop-color="#2E4172"/></linearGradient></defs>
+                </svg>
+                <span>Browse Communities</span>
+            </div>
+            <div class="nav-links">
+                <a href="#" class="nav-link" onclick="navigateTo('community-home-screen')">Home</a>
+                <a href="#" class="nav-link active">Browse</a>
+            </div>
+            <div class="nav-profile" onclick="navigateTo('profile-screen')">
+                <div class="nav-avatar" id="cl-nav-avatar">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </div>
+                <span id="cl-nav-name">User</span>
+            </div>
+        </nav>
+        <main class="dashboard-main">
+            <div class="dashboard-welcome">
+                <h1>Browse Communities 🔍</h1>
+                <p>Find and join domain communities</p>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3>Search Communities</h3>
+                </div>
+                <div class="card-body">
+                    <div class="discover-search-bar">
+                        <svg class="discover-search-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                        <input type="text" id="community-search-input" placeholder="Search communities..." onkeydown="if(event.key==='Enter')searchCommunities()">
+                    </div>
+                </div>
+            </div>
+            <div id="all-communities-grid" class="domains-grid-large">
+                <!-- Populated by JS -->
+            </div>
+        </main>
+    </div>
+
+    <!-- COMMUNITY DETAIL SCREEN -->
+    <div id="community-detail-screen" class="screen discover-screen">
+        <nav class="dashboard-nav">
+            <div class="nav-brand">
+                <svg width="32" height="32" viewBox="0 0 60 60" fill="none">
+                    <circle cx="30" cy="30" r="28" stroke="url(#grad-cd)" stroke-width="3"/>
+                    <path d="M20 35L28 27L35 34L42 24" stroke="url(#grad-cd)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    <defs><linearGradient id="grad-cd" x1="0" y1="0" x2="60" y2="60"><stop offset="0%" stop-color="#4A90D9"/><stop offset="100%" stop-color="#2E4172"/></linearGradient></defs>
+                </svg>
+                <span id="cd-community-name">Community</span>
+            </div>
+            <div class="nav-links">
+                <a href="#" class="nav-link" onclick="navigateTo('community-home-screen')">Communities</a>
+                <a href="#" class="nav-link active">Posts</a>
+            </div>
+            <div class="nav-profile" onclick="navigateTo('profile-screen')">
+                <div class="nav-avatar" id="cd-nav-avatar">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </div>
+                <span id="cd-nav-name">User</span>
+            </div>
+        </nav>
+        <main class="dashboard-main">
+            <div class="community-header-card">
+                <div class="community-header-icon" id="cd-community-icon">🎨</div>
+                <div class="community-header-info">
+                    <h2 id="cd-community-title">Community Name</h2>
+                    <p id="cd-community-desc">Community description</p>
+                    <div class="community-header-stats">
+                        <span id="cd-member-count">0 members</span>
+                        <span id="cd-post-count">0 posts</span>
+                    </div>
+                </div>
+                <button class="btn btn-primary" id="join-leave-btn" onclick="toggleJoinCommunity()">Join</button>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3>Discussions</h3>
+                    <button class="btn btn-primary btn-sm" onclick="navigateTo('create-post-screen')">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+                        New Post
+                    </button>
+                </div>
+                <div class="card-body">
+                    <div class="post-categories">
+                        <button class="post-category active" onclick="filterPosts('all')">All</button>
+                        <button class="post-category" onclick="filterPosts('question')">❓ Questions</button>
+                        <button class="post-category" onclick="filterPosts('discussion')">💬 Discussions</button>
+                        <button class="post-category" onclick="filterPosts('resource')">📚 Resources</button>
+                    </div>
+                    <div id="community-posts-list" class="posts-list">
+                        <p class="empty-state">No posts yet. Be the first to post!</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- CREATE POST SCREEN -->
+    <div id="create-post-screen" class="screen">
+        <div class="settings-container">
+            <div class="settings-header">
+                <button class="btn btn-outline btn-sm" onclick="goBack()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    Back
+                </button>
+                <h2>Create Post</h2>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <form onsubmit="handleCreatePost(event)">
+                        <div class="form-group">
+                            <label for="post-title">Title</label>
+                            <input type="text" id="post-title" placeholder="Enter a title for your post..." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="post-category">Category</label>
+                            <select id="post-category" required>
+                                <option value="">Select category</option>
+                                <option value="question">❓ Question</option>
+                                <option value="discussion">💬 Discussion</option>
+                                <option value="resource">📚 Resource</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="post-content">Content</label>
+                            <textarea id="post-content" rows="6" placeholder="Write your post content..." required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="post-tags">Tags (comma separated)</label>
+                            <input type="text" id="post-tags" placeholder="e.g., design, ui, beginner">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">Publish Post</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- QUESTION DETAIL SCREEN -->
+    <div id="question-detail-screen" class="screen">
+        <div class="settings-container">
+            <div class="settings-header">
+                <button class="btn btn-outline btn-sm" onclick="goBack()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    Back
+                </button>
+                <h2>Discussion</h2>
+            </div>
+            <div id="post-detail-content">
+                <!-- Populated by JS -->
+            </div>
+            <div class="card" style="margin-top: 16px;">
+                <div class="card-header"><h3>Comments & Answers</h3></div>
+                <div class="card-body">
+                    <div id="post-comments-list" class="comments-list">
+                        <p class="empty-state">No comments yet</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="comment-input">Add a comment</label>
+                        <textarea id="comment-input" rows="3" placeholder="Write your comment or answer..."></textarea>
+                    </div>
+                    <button class="btn btn-primary btn-full" onclick="addComment()">Post Comment</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SAVED POSTS SCREEN -->
+    <div id="saved-posts-screen" class="screen discover-screen">
+        <nav class="dashboard-nav">
+            <div class="nav-brand">
+                <svg width="32" height="32" viewBox="0 0 60 60" fill="none">
+                    <circle cx="30" cy="30" r="28" stroke="url(#grad-sp)" stroke-width="3"/>
+                    <path d="M20 35L28 27L35 34L42 24" stroke="url(#grad-sp)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    <defs><linearGradient id="grad-sp" x1="0" y1="0" x2="60" y2="60"><stop offset="0%" stop-color="#4A90D9"/><stop offset="100%" stop-color="#2E4172"/></linearGradient></defs>
+                </svg>
+                <span>Saved Posts</span>
+            </div>
+            <div class="nav-links">
+                <a href="#" class="nav-link" onclick="navigateTo('community-home-screen')">Communities</a>
+                <a href="#" class="nav-link active">Saved</a>
+            </div>
+            <div class="nav-profile" onclick="navigateTo('profile-screen')">
+                <div class="nav-avatar" id="sp-nav-avatar">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </div>
+                <span id="sp-nav-name">User</span>
+            </div>
+        </nav>
+        <main class="dashboard-main">
+            <div class="dashboard-welcome">
+                <h1>Saved Posts 🔖</h1>
+                <p>Your bookmarked discussions and answers</p>
+            </div>
+            <div id="saved-posts-list" class="posts-list">
+                <p class="empty-state">No saved posts yet</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- MESSAGES SCREEN -->
+    <div id="messages-screen" class="screen discover-screen">
+        <nav class="dashboard-nav">
+            <div class="nav-brand">
+                <svg width="32" height="32" viewBox="0 0 60 60" fill="none">
+                    <circle cx="30" cy="30" r="28" stroke="url(#grad-msg)" stroke-width="3"/>
+                    <path d="M20 35L28 27L35 34L42 24" stroke="url(#grad-msg)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    <defs><linearGradient id="grad-msg" x1="0" y1="0" x2="60" y2="60"><stop offset="0%" stop-color="#4A90D9"/><stop offset="100%" stop-color="#2E4172"/></linearGradient></defs>
+                </svg>
+                <span>MentorConnect</span>
+            </div>
+            <div class="nav-links">
+                <a href="#" class="nav-link nav-icon-link" onclick="showStudentDashboard()" title="Home">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+                        <polyline points="9 22 9 12 15 12 15 22"/>
+                    </svg>
+                </a>
+                <a href="#" class="nav-link" onclick="navigateTo('discover-screen')">Discover</a>
+                <a href="#" class="nav-link" onclick="navigateTo('community-home-screen')">Communities</a>
+                <a href="#" class="nav-link active">Messages</a>
+                <a href="#" class="nav-link" onclick="navigateTo('saved-mentors-screen')">Saved</a>
+                <a href="#" class="nav-link" onclick="navigateTo('profile-screen')">Profile</a>
+            </div>
+            <div class="nav-actions">
+                <div class="nav-profile" onclick="navigateTo('profile-screen')">
+                    <div class="nav-avatar" id="msg-nav-avatar">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                    <span id="msg-nav-name">User</span>
+                </div>
+            </div>
+        </nav>
+        <main class="dashboard-main">
+            <div class="dashboard-welcome">
+                <h1>Messages 💬</h1>
+                <p>Your conversations with mentors and students</p>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3>Conversations</h3>
+                    <span id="unread-badge" class="unread-badge" style="display:none;">0 unread</span>
+                </div>
+                <div class="card-body">
+                    <div id="conversations-list" class="conversations-list">
+                        <p class="empty-state">No conversations yet. Connect with mentors to start chatting!</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- PRIVATE CHAT SCREEN -->
+    <div id="private-chat-screen" class="screen">
+        <div class="chat-container">
+            <div class="chat-header">
+                <button class="btn btn-outline btn-sm" onclick="goBack()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    Back
+                </button>
+                <div class="chat-header-info">
+                    <div class="chat-header-avatar" id="chat-partner-avatar">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                    <button type="button" class="chat-header-person" onclick="toggleChatProfile(event)" aria-expanded="false" aria-controls="chat-profile-popover">
+                        <span>
+                            <h3 id="chat-partner-name">User</h3>
+                            <span id="chat-partner-status" class="chat-status">Offline</span>
+                        </span>
+                        <svg class="chat-profile-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+                    </button>
+                    <div id="chat-profile-popover" class="chat-profile-popover" role="dialog" aria-label="Contact information" aria-hidden="true">
+                        <div class="chat-profile-heading">
+                            <div class="chat-profile-avatar" id="chat-profile-avatar"></div>
+                            <div><h4 id="chat-profile-name">User</h4><span id="chat-profile-status" class="chat-status">Offline</span></div>
+                        </div>
+                        <div class="chat-profile-details">
+                            <div><span>Role</span><strong id="chat-profile-role">-</strong></div>
+                            <div><span>Email</span><strong id="chat-profile-email">-</strong></div>
+                            <div><span>Connection</span><strong id="chat-profile-connection">Connected</strong></div>
+                        </div>
+                        <div class="chat-profile-actions">
+                            <button type="button" class="btn btn-outline btn-sm" onclick="startChatCall('audio')"><span aria-hidden="true">🎧</span> Audio Call</button>
+                            <button type="button" class="btn btn-primary btn-sm" onclick="startChatCall('video')"><span aria-hidden="true">📹</span> Video Call</button>
+                        </div>
+                        <button type="button" class="chat-profile-view" onclick="viewChatPartnerProfile()">View Profile</button>
+                    </div>
+                </div>
+                <div class="chat-header-actions">
+                    <button type="button" class="chat-call-btn" onclick="startChatCall('audio')" title="Start audio call" aria-label="Start audio call">
+                        <span aria-hidden="true">🎧</span><span class="chat-call-label">Audio</span>
+                    </button>
+                    <button type="button" class="chat-call-btn" onclick="startChatCall('video')" title="Start video call" aria-label="Start video call">
+                        <span aria-hidden="true">📹</span><span class="chat-call-label">Video</span>
+                    </button>
+                    <button class="btn btn-outline btn-sm" onclick="blockCurrentUser()" id="block-btn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M4.93 4.93l14.14 14.14"/></svg>
+                        Block
+                    </button>
+                </div>
+            </div>
+            <div class="chat-messages" id="chat-messages">
+                <p class="empty-state">No messages yet. Start the conversation!</p>
+            </div>
+            <div class="chat-input-area">
+                <form onsubmit="sendMessage(event)" class="chat-input-form">
+                    <input type="text" id="message-input" placeholder="Type a message..." autocomplete="off">
+                    <button type="submit" class="btn btn-primary">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- SHARED RESOURCES SCREEN -->
+    <div id="shared-resources-screen" class="screen discover-screen">
+        <nav class="dashboard-nav">
+            <div class="nav-brand">
+                <svg width="32" height="32" viewBox="0 0 60 60" fill="none">
+                    <circle cx="30" cy="30" r="28" stroke="url(#grad-res)" stroke-width="3"/>
+                    <path d="M20 35L28 27L35 34L42 24" stroke="url(#grad-res)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    <defs><linearGradient id="grad-res" x1="0" y1="0" x2="60" y2="60"><stop offset="0%" stop-color="#4A90D9"/><stop offset="100%" stop-color="#2E4172"/></linearGradient></defs>
+                </svg>
+                <span>Resources</span>
+            </div>
+            <div class="nav-links">
+                <a href="#" class="nav-link" onclick="navigateTo('messages-screen')">Messages</a>
+                <a href="#" class="nav-link active">Resources</a>
+            </div>
+            <div class="nav-profile" onclick="navigateTo('profile-screen')">
+                <div class="nav-avatar" id="res-nav-avatar">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </div>
+                <span id="res-nav-name">User</span>
+            </div>
+        </nav>
+        <main class="dashboard-main">
+            <div class="dashboard-welcome">
+                <h1>Shared Resources 📎</h1>
+                <p>Files and links shared in your conversations</p>
+            </div>
+            <div id="shared-resources-list" class="resources-list">
+                <p class="empty-state">No resources shared yet</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- BLOCKED USERS SCREEN -->
+    <div id="blocked-users-screen" class="screen">
+        <div class="settings-container">
+            <div class="settings-header">
+                <button class="btn btn-outline btn-sm" onclick="goBack()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    Back
+                </button>
+                <h2>Blocked Users</h2>
+            </div>
+            <div id="blocked-users-list" class="blocked-list">
+                <p class="empty-state">No blocked users</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PHASE 6: SESSIONS -->
+    <div id="sessions-screen" class="screen discover-screen">
+        <nav class="dashboard-nav">
+            <div class="nav-brand"><span>MentorConnect</span></div>
+            <div class="nav-links"></div>
+            <div class="nav-profile" onclick="navigateTo('profile-screen')"><span>Account</span></div>
+        </nav>
+        <main class="dashboard-main">
+            <div class="dashboard-welcome">
+                <h1>Mentorship Sessions 📅</h1>
+                <p>Book, confirm, and review your learning sessions</p>
+            </div>
+            <div class="plan-chip" id="session-usage-chip"></div>
+            <div class="tab-row" id="sessions-tabs"></div>
+            <div id="sessions-list" class="session-list"></div>
+        </main>
+    </div>
+
+    <div id="mentor-availability-screen" class="screen discover-screen">
+        <nav class="dashboard-nav">
+            <div class="nav-brand"><span>MentorConnect</span></div>
+            <div class="nav-links"></div>
+            <div class="nav-profile" onclick="navigateTo('profile-screen')"><span>Account</span></div>
+        </nav>
+        <main class="dashboard-main">
+            <div class="dashboard-welcome">
+                <h1>Your Availability</h1>
+                <p>Students can book these time slots</p>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3>Weekly Time Slots</h3>
+                    <button class="btn btn-outline btn-sm" onclick="resetAvailabilityChanges()">Reset</button>
+                    <button class="btn btn-primary btn-sm" onclick="saveAvailabilityChanges()">Save Changes</button>
+                </div>
+                <div class="card-body" id="availability-editor"></div>
+            </div>
+        </main>
+    </div>
+
+    <div id="booking-screen" class="screen discover-screen">
+        <nav class="dashboard-nav">
+            <div class="nav-brand"><span>MentorConnect</span></div>
+            <div class="nav-links"></div>
+            <div class="nav-profile" onclick="navigateTo('profile-screen')"><span>Account</span></div>
+        </nav>
+        <main class="dashboard-main">
+            <div class="dashboard-welcome">
+                <h1>Book a Session</h1>
+                <p id="booking-mentor-name">Select a date and time</p>
+            </div>
+            <div class="card">
+                <div class="card-header"><h3>Date & Time</h3></div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="date" id="booking-date" onchange="renderBookingSlots()">
+                    </div>
+                    <div id="booking-slots" class="slot-grid"></div>
+                    <div class="form-group" style="margin-top:16px;">
+                        <label for="booking-call-type">Call type</label>
+                        <select id="booking-call-type">
+                            <option value="video">Video call</option>
+                            <option value="audio">Audio call</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="margin-top:16px;">
+                        <label>Topic</label>
+                        <input type="text" id="booking-topic" placeholder="e.g. Career transition to UI/UX">
+                    </div>
+                    <button class="btn btn-primary" onclick="confirmBookingDraft()">Continue</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="booking-confirm-screen" class="screen discover-screen">
+        <nav class="dashboard-nav">
+            <div class="nav-brand"><span>MentorConnect</span></div>
+            <div class="nav-links"></div>
+            <div class="nav-profile" onclick="navigateTo('profile-screen')"><span>Account</span></div>
+        </nav>
+        <main class="dashboard-main">
+            <div class="card confirm-card">
+                <div class="card-header"><h3>Booking Confirmation</h3></div>
+                <div class="card-body" id="booking-confirm-body"></div>
+                <div class="card-body">
+                    <button class="btn btn-primary btn-full" onclick="submitBooking()">Send Booking Request</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="review-session-screen" class="screen discover-screen">
+        <nav class="dashboard-nav">
+            <div class="nav-brand"><span>MentorConnect</span></div>
+            <div class="nav-links"></div>
+            <div class="nav-profile" onclick="navigateTo('profile-screen')"><span>Account</span></div>
+        </nav>
+        <main class="dashboard-main">
+            <div class="card">
+                <div class="card-header"><h3>Review Your Mentor</h3></div>
+                <div class="card-body">
+                    <p id="review-mentor-label"></p>
+                    <div class="star-row" id="review-stars"></div>
+                    <textarea id="review-text" rows="5" placeholder="What did you learn? How was the session?"></textarea>
+                    <button class="btn btn-primary" style="margin-top:12px;" onclick="submitReview()">Submit Review</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- PHASE 7: CAREER -->
+    <div id="career-profile-screen" class="screen discover-screen">
+        <nav class="dashboard-nav">
+            <div class="nav-brand"><span>MentorConnect</span></div>
+            <div class="nav-links"></div>
+            <div class="nav-profile" onclick="navigateTo('profile-screen')"><span>Account</span></div>
+        </nav>
+        <main class="dashboard-main">
+            <div class="dashboard-welcome">
+                <h1>Career Path 🚀</h1>
+                <p>Understand where you are and where you want to go</p>
+            </div>
+            <div class="career-grid">
+                <div class="card clickable-card" onclick="navigateTo('career-current-screen')">
+                    <div class="card-header"><h3>Current Field</h3></div>
+                    <div class="card-body"><p id="career-current-summary">Select your current career</p></div>
+                </div>
+                <div class="card clickable-card" onclick="navigateTo('career-target-screen')">
+                    <div class="card-header"><h3>Target Field</h3></div>
+                    <div class="card-body"><p id="career-target-summary">Choose where you want to go</p></div>
+                </div>
+                <div class="card clickable-card" onclick="openCareerAnalysis()">
+                    <div class="card-header"><h3>Transition Analysis</h3></div>
+                    <div class="card-body"><p>See transferable and missing skills</p></div>
+                </div>
+                <div class="card clickable-card" onclick="navigateTo('career-roadmap-screen')">
+                    <div class="card-header"><h3>Learning Roadmap</h3></div>
+                    <div class="card-body"><p>Follow a guided path with milestones</p></div>
+                </div>
+                <div class="card clickable-card" onclick="navigateTo('career-skills-progress-screen')">
+                    <div class="card-header"><h3>Skills Progress</h3></div>
+                    <div class="card-body"><p>Track skills you are building</p></div>
+                </div>
+                <div class="card clickable-card" onclick="navigateTo('career-milestones-screen')">
+                    <div class="card-header"><h3>Career Milestones</h3></div>
+                    <div class="card-body"><p>Celebrate progress along the way</p></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="career-current-screen" class="screen discover-screen">
+        <nav class="dashboard-nav">
+            <div class="nav-brand"><span>MentorConnect</span></div>
+            <div class="nav-links"></div>
+            <div class="nav-profile" onclick="navigateTo('profile-screen')"><span>Account</span></div>
+        </nav>
+        <main class="dashboard-main">
+            <div class="dashboard-welcome"><h1>Current Field</h1><p>Where are you today?</p></div>
+            <div id="current-field-list" class="field-grid"></div>
+        </main>
+    </div>
+
+    <div id="career-target-screen" class="screen discover-screen">
+        <nav class="dashboard-nav">
+            <div class="nav-brand"><span>MentorConnect</span></div>
+            <div class="nav-links"></div>
+            <div class="nav-profile" onclick="navigateTo('profile-screen')"><span>Account</span></div>
+        </nav>
+        <main class="dashboard-main">
+            <div class="dashboard-welcome"><h1>Target Field</h1><p>Where do you want to go?</p></div>
+            <div id="target-field-list" class="field-grid"></div>
+        </main>
+    </div>
+
+    <div id="career-analysis-screen" class="screen discover-screen">
+        <nav class="dashboard-nav">
+            <div class="nav-brand"><span>MentorConnect</span></div>
+            <div class="nav-links"></div>
+            <div class="nav-profile" onclick="navigateTo('profile-screen')"><span>Account</span></div>
+        </nav>
+        <main class="dashboard-main">
+            <div class="dashboard-welcome"><h1>Transition Analysis</h1><p id="analysis-subtitle"></p></div>
+            <div class="card"><div class="card-header"><h3>Transferable Skills</h3></div><div class="card-body" id="transferable-skills"></div></div>
+            <div class="card"><div class="card-header"><h3>Missing Skills</h3></div><div class="card-body" id="missing-skills"></div></div>
+            <div class="card"><div class="card-header"><h3>Recommended Mentors</h3></div><div class="card-body" id="career-recommended-mentors"></div></div>
+            <div class="card"><div class="card-header"><h3>Recommended Communities</h3></div><div class="card-body" id="career-recommended-communities"></div></div>
+            <button class="btn btn-primary" onclick="navigateTo('career-roadmap-screen')">View Roadmap</button>
+        </main>
+    </div>
+
+    <div id="career-roadmap-screen" class="screen discover-screen">
+        <nav class="dashboard-nav">
+            <div class="nav-brand"><span>MentorConnect</span></div>
+            <div class="nav-links"></div>
+            <div class="nav-profile" onclick="navigateTo('profile-screen')"><span>Account</span></div>
+        </nav>
+        <main class="dashboard-main">
+            <div class="dashboard-welcome"><h1>Career Roadmap</h1><p>A practical path from your current field to your goal</p></div>
+            <div id="roadmap-steps" class="roadmap"></div>
+        </main>
+    </div>
+
+    <div id="career-skills-progress-screen" class="screen discover-screen">
+        <nav class="dashboard-nav">
+            <div class="nav-brand"><span>MentorConnect</span></div>
+            <div class="nav-links"></div>
+            <div class="nav-profile" onclick="navigateTo('profile-screen')"><span>Account</span></div>
+        </nav>
+        <main class="dashboard-main">
+            <div class="dashboard-welcome"><h1>Skills Progress</h1><p>Mark skills as you learn them</p></div>
+            <div id="skills-progress-list"></div>
+        </main>
+    </div>
+
+    <div id="career-milestones-screen" class="screen discover-screen">
+        <nav class="dashboard-nav">
+            <div class="nav-brand"><span>MentorConnect</span></div>
+            <div class="nav-links"></div>
+            <div class="nav-profile" onclick="navigateTo('profile-screen')"><span>Account</span></div>
+        </nav>
+        <main class="dashboard-main">
+            <div class="dashboard-welcome"><h1>Career Milestones</h1></div>
+            <div id="milestones-list"></div>
+        </main>
+    </div>
+
+    <!-- PHASE 9: SUBSCRIPTION -->
+    <div id="plans-screen" class="screen discover-screen">
+        <nav class="dashboard-nav">
+            <div class="nav-brand"><span>MentorConnect</span></div>
+            <div class="nav-links"></div>
+            <div class="nav-profile" onclick="navigateTo('profile-screen')"><span>Account</span></div>
+        </nav>
+        <main class="dashboard-main">
+            <div class="dashboard-welcome">
+                <h1>Premium MentorLink</h1>
+                <p>Unlock unlimited sessions, AI coaching, and career tools</p>
+            </div>
+            <div id="trial-banner" class="trial-banner"></div>
+            <div class="plans-grid">
+                <div class="plan-card">
+                    <h3>Free</h3>
+                    <p class="plan-price">Rs 0</p>
+                    <ul><li>2 mentorship sessions / month</li><li>Communities & messaging</li><li>Basic career profile</li></ul>
+                    <button class="btn btn-outline" onclick="selectPlan('free')">Current / Stay Free</button>
+                </div>
+                <div class="plan-card featured">
+                    <h3>Premium</h3>
+                    <p class="plan-price">Rs 2,500<span>/mo</span></p>
+                    <ul><li>Unlimited sessions</li><li>AI career coach</li><li>Full roadmap & analytics</li><li>Priority mentor matching</li></ul>
+                    <button class="btn btn-primary" onclick="startUpgrade('premium')">Upgrade</button>
+                </div>
+                <div class="plan-card">
+                    <h3>Pro</h3>
+                    <p class="plan-price">Rs 5,000<span>/yr</span></p>
+                    <ul><li>Unlimited sessions & messaging</li><li>Unlimited AI career coach</li><li>Full roadmap & analytics</li><li>Billed yearly — best value</li></ul>
+                    <button class="btn btn-primary" onclick="startUpgrade('pro')">Upgrade</button>
+                </div>
+            </div>
+            <div class="tab-row">
+                <button class="btn btn-outline btn-sm" onclick="navigateTo('usage-dashboard-screen')">Usage Dashboard</button>
+                <button class="btn btn-outline btn-sm" onclick="navigateTo('billing-history-screen')">Billing History</button>
+            </div>
+        </main>
+    </div>
+
+    <div id="usage-dashboard-screen" class="screen discover-screen">
+        <nav class="dashboard-nav">
+            <div class="nav-brand"><span>MentorConnect</span></div>
+            <div class="nav-links"></div>
+            <div class="nav-profile" onclick="navigateTo('profile-screen')"><span>Account</span></div>
+        </nav>
+        <main class="dashboard-main">
+            <div class="dashboard-welcome"><h1>Usage Dashboard</h1><p>Track your free sessions and premium features</p></div>
+            <div id="usage-cards" class="stats-grid"></div>
+        </main>
+    </div>
+
+    <div id="upgrade-screen" class="screen discover-screen">
+        <nav class="dashboard-nav">
+            <div class="nav-brand"><span>MentorConnect</span></div>
+            <div class="nav-links"></div>
+            <div class="nav-profile" onclick="navigateTo('profile-screen')"><span>Account</span></div>
+        </nav>
+        <main class="dashboard-main">
+            <div class="card">
+                <div class="card-header"><h3>Upgrade</h3></div>
+                <div class="card-body" id="upgrade-summary"></div>
+                <div class="card-body"><button class="btn btn-primary btn-full" onclick="navigateTo('payment-screen')">Continue to Payment</button></div>
+            </div>
+        </main>
+    </div>
+
+    <div id="payment-screen" class="screen discover-screen">
+        <nav class="dashboard-nav">
+            <div class="nav-brand"><span>MentorConnect</span></div>
+            <div class="nav-links"></div>
+            <div class="nav-profile" onclick="navigateTo('profile-screen')"><span>Account</span></div>
+        </nav>
+        <main class="dashboard-main">
+            <div class="card">
+                <div class="card-header"><h3>Mock Payment</h3></div>
+                <div class="card-body">
+                    <div class="form-group"><label>Cardholder</label><input id="pay-name" value="Alex Student"></div>
+                    <div class="form-group"><label>Card number</label><input id="pay-card" value="4242 4242 4242 4242"></div>
+                    <div class="form-row">
+                        <div class="form-group"><label>Expiry</label><input id="pay-exp" value="12/28"></div>
+                        <div class="form-group"><label>CVC</label><input id="pay-cvc" value="123"></div>
+                    </div>
+                    <button class="btn btn-primary btn-full" onclick="completeMockPayment()">Pay & Unlock Premium</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="billing-history-screen" class="screen discover-screen">
+        <nav class="dashboard-nav">
+            <div class="nav-brand"><span>MentorConnect</span></div>
+            <div class="nav-links"></div>
+            <div class="nav-profile" onclick="navigateTo('profile-screen')"><span>Account</span></div>
+        </nav>
+        <main class="dashboard-main">
+            <div class="dashboard-welcome"><h1>Billing History</h1></div>
+            <div id="billing-list"></div>
+        </main>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast" class="toast">
+        <div class="toast-content">
+            <span id="toast-message"></span>
+        </div>
+    </div>
+
+    <button type="button" id="ai-fab" class="ai-fab" onclick="toggleAiPanel()" title="Mentor AI" aria-label="Open Mentor AI">
+        <svg class="ai-fab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
+            <path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5H8l-4 2v-5.5A7.5 7.5 0 1 1 20 11.5Z" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 7.5v4M10 9.5h4" stroke-linecap="round"/>
+        </svg>
+        <span>Mentor AI</span>
+    </button>
+    <div id="ai-panel" class="ai-panel">
+        <div class="ai-panel-header">
+            <div class="ai-header-main">
+                <strong>Mentor AI</strong>
+                <span class="ai-header-status"><span class="ai-status-dot"></span><span id="ai-power-label">Online</span></span>
+            </div>
+            <div class="ai-header-actions">
+                <button type="button" class="ai-clear-btn" onclick="clearAiChat()" title="Start a new conversation" aria-label="Start a new conversation">New chat</button>
+                <button type="button" onclick="toggleAiPanel()" aria-label="Close chat">×</button>
+            </div>
+        </div>
+        <div class="ai-suggested" id="ai-suggested">
+            <button type="button" onclick="askAiPreset('I am a Software Engineering student but I want to become a UI/UX Designer.')">SWE → UI/UX</button>
+            <button type="button" onclick="askAiPreset('Which skills should I learn next?')">Skills</button>
+            <button type="button" onclick="askAiPreset('Recommend mentors for my career goal.')">Mentors</button>
+            <button type="button" onclick="askAiPreset('How should I update my resume for a career change?')">Resume</button>
+        </div>
+        <div id="ai-messages" class="ai-messages"></div>
+        <form class="ai-input" onsubmit="submitAiQuestion(event)">
+            <input id="ai-input" placeholder="Message Mentor AI..." autocomplete="off">
+            <button type="submit" class="btn btn-primary btn-sm">Send</button>
+        </form>
+    </div>
+
+    <script src="notifications.js"></script>
+    <script src="app.js"></script>
+    <script src="platform.js"></script>
+</body>
+

@@ -1,0 +1,11 @@
+<string>:1: DeprecationWarning: Python 3.14 will, by default, filter extracted tar archives and reject files or modify their metadata. Use the filter argument to control this behavior.
+& : The term 'C:\Users\Techenzo\pgsql\bin\psql.exe' is not recognized as the name of a cmdlet, function, script file, 
+or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and 
+try again.
+At C:\Users\Techenzo\Desktop\mentor-platform\setup-pg.ps1:42 char:7
++     & $psql -U postgres -h localhost -p 5432 -d postgres -c 'SELECT 1 ...
++       ~~~~~
+    + CategoryInfo          : ObjectNotFound: (C:\Users\Techenzo\pgsql\bin\psql.exe:String) [], ParentContainsErrorRec 
+   ordException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
